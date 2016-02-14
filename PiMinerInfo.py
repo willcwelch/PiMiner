@@ -98,14 +98,14 @@ class PiMinerInfo:
 	  return None
 	
 	def hashrate(self, h):
-	  u = 'Mh/s'
+	  u = 'Gh/s'
 	  if h >= 1000.0:
-		u = 'Gh/s'
+		u = 'Th/s'
 		h = h / 1000.0
 	  elif h >= 1000000.0:
-		u = 'Th/s'
+		u = 'Ph/s'
 		h = h / 1000000.0
-	  s = '%s %s' % ("{0:.5f}".format(h), u)
+	  s = '%s %s' % ("{0:.2f}".format(h), u)
 	  return s
 	  
 	def abbrev(self, v):
@@ -143,7 +143,7 @@ class PiMinerInfo:
 		rej = self.abbrev(d['Rejected'])
 		hw = self.abbrev(d['Hardware Errors'])
 		s1 = 'A%s R%s H%s' % (acc, rej, hw)
-		s2 = 'avg:%s' % self.hashrate(float(d['MHS av']))
+		s2 = 'avg:%s' % self.hashrate(float(d['GHS av']))
 		return [s1, s2]
 	  except Exception as e:
 		return [str(e), str(e)]
